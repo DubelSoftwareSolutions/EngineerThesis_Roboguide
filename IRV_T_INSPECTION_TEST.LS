@@ -1,0 +1,41 @@
+/PROG  IRV_T_INSPECTION_TEST
+/ATTR
+OWNER		= MNEDITOR;
+COMMENT		= "";
+PROG_SIZE	= 733;
+CREATE		= DATE 17-12-07  TIME 18:41:26;
+MODIFIED	= DATE 17-12-07  TIME 18:46:46;
+FILE_NAME	= IRV_T_LO;
+VERSION		= 0;
+LINE_COUNT	= 10;
+MEMORY_SIZE	= 1197;
+PROTECT		= READ_WRITE;
+TCD:  STACK_SIZE	= 0,
+      TASK_PRIORITY	= 50,
+      TIME_SLICE	= 0,
+      BUSY_LAMP_OFF	= 0,
+      ABORT_REQUEST	= 0,
+      PAUSE_REQUEST	= 0;
+DEFAULT_GROUP	= 1,*,*,*,*;
+CONTROL_CODE	= 00000000 00000000;
+/APPL
+/APPL
+/MN
+   1:  UFRAME_NUM=9 ;
+   2:  UTOOL_NUM=2 ;
+   3:  !punkt robienia zdjecia ;
+   4:J P[1] 100% FINE    ;
+   5:  VISION RUN_FIND 'IRV_2D_PROCESS'    ;
+   6:  VISION GET_OFFSET 'IRV_2D_PROCESS' VR[10] JMP LBL[1] ;
+   7:  !dojazd do punktu inspekcji ;
+   8:J PR[84:irv_qtest_basic] 100% FINE VOFFSET,VR[10]    ;
+   9:  VISION RUN_FIND 'IRV_INSPECTION_PROCESS'    ;
+  10:  LBL[1] ;
+/POS
+P[1]{
+   GP1:
+	UF : 9, UT : 2,		CONFIG : 'N U T, 0, 0, 0',
+	X =    -4.579  mm,	Y =   -69.487  mm,	Z =   476.269  mm,
+	W =   178.582 deg,	P =      .013 deg,	R =    90.870 deg
+};
+/END
